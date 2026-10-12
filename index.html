@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wibi | Portofolio Bisnis Digital</title>
+<meta name="description" content="Portofolio siswa bisnis digital yang siap PKL: proyek, skill, dan kontak.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b1464;
+    --paper:#f1eeff;
+    --card:#ffffff;
+    --sticker:#ffd23f;
+    --mint:#12b886;
+    --berry:#ff3d81;
+    --violet:#6c4bff;
+    --cyan:#22c7ea;
+    --orange:#ff8a3d;
+    --muted:#4b4a7a;
+    --line:#d9d3ff;
+    --display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+    --body:"DM Sans",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;padding-bottom:5rem}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--berry);outline-offset:3px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+
+  /* Header */
+  header{padding:1.1rem 0}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+  .logo{font-family:var(--display);font-weight:800;font-size:1.25rem;text-decoration:none}
+  nav{display:flex;gap:1.25rem;font-weight:500}
+  nav a{text-decoration:none;padding:.25rem 0;border-bottom:2px solid transparent}
+  nav a:hover{border-color:var(--ink)}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:center;padding:2.5rem 0 4rem}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.5vw,3.8rem);line-height:1.05;letter-spacing:-.02em}
+  .lead{margin:1.25rem 0 1.75rem;font-size:1.1rem;color:var(--muted);max-width:46ch}
+  .btns{display:flex;gap:.75rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.85rem 1.4rem;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid var(--ink);transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn.ghost{background:transparent}
+
+  /* Kartu produk: elemen utama yang diingat */
+  .product{position:relative;background:var(--card);border:2px solid var(--ink);border-radius:20px;padding:1.5rem;box-shadow:8px 8px 0 var(--ink);animation:masuk .7s ease-out both}
+  @keyframes masuk{from{opacity:0;transform:translateY(24px) rotate(-2deg)}to{opacity:1;transform:none}}
+  .tag{position:absolute;top:-16px;right:18px;background:var(--sticker);border:2px solid var(--ink);border-radius:8px;padding:.3rem .8rem;font-family:var(--display);font-weight:800;transform:rotate(4deg)}
+  .photo{width:100%;aspect-ratio:4/3;border-radius:12px;background:var(--paper) center/cover;border:2px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.9rem;margin-bottom:1rem}
+  .product h2{font-family:var(--display);font-size:1.4rem}
+  .status{display:inline-flex;align-items:center;gap:.4rem;color:var(--mint);font-weight:700;margin:.25rem 0 .75rem}
+  .status::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--mint)}
+  dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:.95rem;border-top:1px solid var(--line);padding-top:.75rem}
+  dt{color:var(--muted)}
+  dd{font-weight:500}
+
+  /* Section umum */
+  section{padding:3rem 0}
+  h2.title{font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.3rem);letter-spacing:-.01em;margin-bottom:.5rem}
+  .sub{color:var(--muted);margin-bottom:1.75rem;max-width:56ch}
+
+  /* Tentang */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .about p{max-width:60ch}
+  .about p + p{margin-top:1rem}
+  .facts{list-style:none;padding:0;display:grid;gap:.6rem;align-content:start}
+  .facts li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.75rem 1rem}
+
+  /* Isi paket (skill) */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+  .skill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.1rem}
+  .skill h3{font-family:var(--display);font-size:1.1rem;margin-bottom:.35rem}
+  .skill p{color:var(--muted);font-size:.95rem}
+
+  /* Katalog proyek */
+  .catalog{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem}
+  .item{background:var(--card);border:2px solid var(--ink);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .item .thumb{aspect-ratio:16/9;background:var(--sticker);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.2rem;border-bottom:2px solid var(--ink)}
+  .item .body{padding:1.1rem;display:grid;gap:.5rem}
+  .item h3{font-family:var(--display);font-size:1.2rem}
+  .chips{display:flex;gap:.4rem;flex-wrap:wrap}
+  .chips span{font-size:.8rem;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:.1rem .65rem}
+  details summary{cursor:pointer;font-weight:700;color:var(--berry)}
+  details p{margin-top:.5rem;font-size:.95rem;color:var(--muted)}
+  details p b{color:var(--ink)}
+
+  /* Kontak */
+  .contact{background:var(--ink);color:#fff;border-radius:24px;padding:2.5rem 1.5rem;text-align:center}
+  .contact p{max-width:48ch;margin:.5rem auto 1.5rem;color:#c9d2ea}
+  .contact .btn{border-color:#fff}
+  .contact .btn.primary{background:var(--sticker);color:var(--ink);border-color:var(--sticker)}
+  .contact .btn.ghost{color:#fff}
+
+  footer{text-align:center;color:var(--muted);font-size:.9rem;padding:2rem 0}
+
+  /* Bar beli-sekarang untuk HP */
+  .sticky{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:2px solid var(--ink);padding:.7rem 1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;z-index:10}
+  .sticky strong{font-family:var(--display)}
+  .sticky .btn{padding:.6rem 1.1rem}
+
+  @media (max-width:760px){
+    .hero,.about{grid-template-columns:1fr}
+    .product{box-shadow:5px 5px 0 var(--ink)}
+    nav{gap:1rem;font-size:.95rem}
+  }
+
+  /* ===== Versi berwarna ===== */
+  body{background:var(--paper)}
+  .hero{background:linear-gradient(135deg,var(--violet) 0%,var(--berry) 100%);color:#fff;border-radius:28px;padding:3rem 2rem 3rem;margin-top:.5rem;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+  .hero h1{color:#fff}
+  .hero .lead{color:#f1ecff}
+  .hero .btn.primary{background:var(--sticker);color:var(--ink);border-color:var(--ink)}
+  .hero .btn.ghost{color:#fff;border-color:#fff}
+  .product{box-shadow:8px 8px 0 var(--sticker);color:var(--ink)}
+  .photo{background:linear-gradient(135deg,var(--cyan),var(--mint));border:2px solid var(--ink);color:var(--ink);font-weight:700}
+  .logo{color:var(--violet)}
+  nav a:hover{border-color:var(--berry)}
+  h2.title{display:inline-block;background:var(--sticker);border:2px solid var(--ink);border-radius:10px;padding:.15rem .8rem;box-shadow:4px 4px 0 var(--ink);transform:rotate(-1deg);margin-bottom:1rem}
+  .contact h2.title{color:var(--ink)}
+  .facts li{border:2px solid var(--ink);border-left-width:10px}
+  .facts li:nth-child(1){border-left-color:var(--cyan)}
+  .facts li:nth-child(2){border-left-color:var(--berry)}
+  .facts li:nth-child(3){border-left-color:var(--orange)}
+  .skill{border:2px solid var(--ink);color:var(--ink)}
+  .skill p{color:var(--ink);opacity:.8}
+  .skill:nth-child(1){background:#ffe27a}
+  .skill:nth-child(2){background:#9be9ff}
+  .skill:nth-child(3){background:#ffb3cf}
+  .skill:nth-child(4){background:#a6f0cf}
+  .item{box-shadow:6px 6px 0 var(--ink)}
+  .item:nth-child(1) .thumb{background:var(--cyan)}
+  .item:nth-child(2) .thumb{background:var(--berry);color:#fff}
+  .item:nth-child(3) .thumb{background:var(--orange)}
+  .item:nth-child(1) summary{color:var(--violet)}
+  .chips span{background:#e9e4ff;border-color:var(--violet);color:var(--ink)}
+  .contact{background:linear-gradient(135deg,var(--ink) 0%,var(--violet) 100%);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--berry)}
+  .contact p{color:#e7e2ff}
+  .sticky{background:var(--sticker);border-top:2px solid var(--ink)}
+  .sticky .btn.primary{background:var(--ink);color:#fff}
+  @media (max-width:760px){
+    .hero{padding:2rem 1.25rem;box-shadow:5px 5px 0 var(--ink)}
+    .product{box-shadow:5px 5px 0 var(--sticker)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Wibi</a>
+    <nav aria-label="Navigasi utama">
+      <a href="#tentang">Tentang</a>
+      <a href="#skill">Skill</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+
+    <!-- HERO: halaman terasa seperti halaman produk, kamu adalah "produknya" -->
+    <div class="hero">
+      <div>
+        <h1>Siswa bisnis digital yang siap belajar dan kerja di tempat PKL-mu.</h1>
+        <p class="lead">
+          <!-- ISI: satu kalimat tentang apa yang bisa kamu bantu di perusahaan -->
+          Saya membantu mengelola konten, toko online, dan data penjualan sederhana. Lihat bukti kerjanya di bawah.
+        </p>
+        <div class="btns">
+          <a class="btn primary" href="#kontak">Ajak saya PKL</a>
+          <a class="btn ghost" href="#proyek">Lihat proyek</a>
+        </div>
+      </div>
+
+      <aside class="product" aria-label="Ringkasan profil">
+        <span class="tag">Tersedia PKL</span>
+        <div class="photo" role="img" aria-label="Foto profil">
+          <!-- GANTI dengan foto: ubah style jadi background-image:url('foto.jpg') -->
+          Tempel fotomu di sini
+        </div>
+        <h2>Wibi</h2>
+        <p class="status">Siap mulai bulan [isi bulan]</p>
+        <dl>
+          <dt>Bidang</dt><dd>Bisnis Digital</dd>
+          <dt>Sekolah</dt><dd>SMK 17 Temanggung</dd>
+          <dt>Kelas</dt><dd>XI PM 2</dd>
+          <dt>Lokasi</dt><dd>Temanggung</dd>
+          <dt>Durasi PKL</dt><dd>3 bulan</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <!-- TENTANG -->
+    <section id="tentang">
+      <h2 class="title">Tentang saya</h2>
+      <div class="about">
+        <div>
+          <p>
+            <!-- ISI: ceritakan 3-4 kalimat. Siapa kamu, kenapa memilih bisnis digital, apa yang sedang kamu pelajari. -->
+            Halo, saya Wibi, siswa jurusan Bisnis Digital di SMK 17 Temanggung. Saya tertarik pada cara bisnis kecil bisa tumbuh lewat internet.
+          </p>
+          <p>
+            Saya belajar sambil praktik: membuat konten, menyusun rencana usaha, dan menguji ide jualan online. Saya mencari tempat PKL untuk mencoba semuanya di dunia kerja nyata.
+          </p>
+        </div>
+        <ul class="facts">
+          <li><b>Cepat belajar:</b> [contoh singkat, mis. belajar Canva & Meta Ads dari nol]</li>
+          <li><b>Rapi dan tepat waktu:</b> [contoh singkat]</li>
+          <li><b>Aktif di:</b> [organisasi / ekskul / komunitas]</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILL -->
+    <section id="skill">
+      <h2 class="title">Isi paket: yang bisa saya kerjakan</h2>
+      <p class="sub">Hanya skill yang sudah saya pakai di proyek. Ganti isinya dengan skill milikmu.</p>
+      <div class="skills">
+        <div class="skill"><h3>Konten dan desain</h3><p>Canva, CapCut, caption untuk Instagram/TikTok.</p></div>
+        <div class="skill"><h3>Toko online</h3><p>Mengelola produk dan deskripsi di marketplace.</p></div>
+        <div class="skill"><h3>Data dan laporan</h3><p>Spreadsheet untuk catatan penjualan dan ringkasan.</p></div>
+        <div class="skill"><h3>Pelayanan pelanggan</h3><p>Membalas chat dengan sopan dan jelas.</p></div>
+      </div>
+    </section>
+
+    <!-- PROYEK -->
+    <section id="proyek">
+      <h2 class="title">Katalog proyek</h2>
+      <p class="sub">Klik "Lihat detail" untuk membaca masalah, peran, dan hasilnya.</p>
+      <div class="catalog">
+
+        <article class="item">
+          <div class="thumb">[Gambar proyek 1]</div>
+          <div class="body">
+            <h3>[Judul proyek 1]</h3>
+            <div class="chips"><span>Tugas sekolah</span><span>[Tools]</span></div>
+            <details>
+              <summary>Lihat detail</summary>
+              <p><b>Masalah:</b> [apa yang ingin diselesaikan]</p>
+              <p><b>Peran saya:</b> [apa yang kamu kerjakan]</p>
+              <p><b>Hasil:</b> [angka atau hasil nyata, mis. 30 pesanan simulasi]</p>
+            </details>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="thumb">[Gambar proyek 2]</div>
+          <div class="body">
+            <h3>[Judul proyek 2]</h3>
+            <div class="chips"><span>Tugas sekolah</span><span>[Tools]</span></div>
+            <details>
+              <summary>Lihat detail</summary>
+              <p><b>Masalah:</b> [...]</p>
+              <p><b>Peran saya:</b> [...]</p>
+              <p><b>Hasil:</b> [...]</p>
+            </details>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="thumb">[Gambar proyek 3]</div>
+          <div class="body">
+            <h3>[Judul proyek 3]</h3>
+            <div class="chips"><span>Tugas sekolah</span><span>[Tools]</span></div>
+            <details>
+              <summary>Lihat detail</summary>
+              <p><b>Masalah:</b> [...]</p>
+              <p><b>Peran saya:</b> [...]</p>
+              <p><b>Hasil:</b> [...]</p>
+            </details>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak">
+      <div class="contact">
+        <h2 class="title">Ajak saya PKL di tempatmu</h2>
+        <p>Kirim pesan singkat berisi nama perusahaan dan kapan PKL dimulai. Saya balas secepatnya.</p>
+        <div class="btns" style="justify-content:center">
+          <a class="btn primary" id="wa" href="#">Chat WhatsApp</a>
+          <a class="btn ghost" id="mail" href="#">Kirim email</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p>&copy; <span id="tahun"></span> Wibi. Dibuat dengan HTML, CSS, dan JavaScript.</p>
+</footer>
+
+<div class="sticky">
+  <strong>Tersedia untuk PKL</strong>
+  <a class="btn primary" href="#kontak">Hubungi saya</a>
+</div>
+
+<script>
+  // ISI data kontakmu di sini. Nomor WhatsApp pakai format 62, tanpa 0 di depan dan tanpa tanda +.
+  const KONTAK = {
+    whatsapp: "6281234567890",
+    email: "emailkamu@example.com",
+    pesan: "Halo, saya melihat portofolio Anda dan tertarik membahas PKL."
+  };
+
+  document.getElementById("wa").href =
+    "https://wa.me/" + KONTAK.whatsapp + "?text=" + encodeURIComponent(KONTAK.pesan);
+  document.getElementById("mail").href =
+    "mailto:" + KONTAK.email + "?subject=" + encodeURIComponent("Tawaran PKL") +
+    "&body=" + encodeURIComponent(KONTAK.pesan);
+  document.getElementById("tahun").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
